@@ -1,0 +1,221 @@
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#06060b;
+  --text:#f0f0f5;
+  --text-muted:#9898a8;
+  --text-dim:#606070;
+  --accent:#2563eb;
+  --accent-bright:#3b82f6;
+  --violet:#6366f1;
+  --glass-bg:rgba(255,255,255,0.035);
+  --glass-border:rgba(255,255,255,0.08);
+  --glass-border-hover:rgba(255,255,255,0.15);
+  --glass-blur:20px;
+  --radius:16px;
+  --radius-sm:10px;
+  --radius-lg:24px;
+  --font-heading:'Space Grotesk',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --max-w:1180px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-spring:cubic-bezier(.34,1.56,.64,1);
+  --pink:#ec4899;
+  --teal:#06b6d4;
+  --shadow-glow:0 0 0 1px rgba(255,255,255,.06) inset,0 20px 60px rgba(0,0,0,.45);
+}
+
+html{scroll-behavior:smooth;overflow-x:hidden;width:100%}
+
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+  width:100%;
+  position:relative;
+}
+
+img,svg,video,canvas,iframe{max-width:100%;height:auto}
+h1,h2,h3,h4,p,a,span,li{overflow-wrap:break-word}
+
+a{color:inherit;text-decoration:none}
+
+/* ---------- Layout ---------- */
+.hero{
+  max-width:var(--max-w);margin:0 auto;
+  padding:80px 24px 24px;
+}
+.hero-inner{max-width:700px}
+
+.section{
+  max-width:var(--max-w);margin:0 auto;
+  padding:24px 24px 60px;
+}
+
+/* ---------- Glass card ---------- */
+.glass-card{
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius);
+  backdrop-filter:blur(var(--glass-blur));
+  transition:border-color .25s,box-shadow .25s;
+}
+.glass-card:hover{
+  border-color:var(--glass-border-hover);
+  box-shadow:var(--shadow-glow);
+}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 22px;border-radius:100px;
+  font-family:var(--font-body);font-size:.875rem;font-weight:600;
+  cursor:pointer;border:none;
+  transition:background .2s,transform .15s,box-shadow .25s;
+  text-decoration:none;white-space:nowrap;
+}
+.btn-primary{
+  background:var(--accent);color:#fff;
+  box-shadow:0 0 0 1px rgba(37,99,235,.5),0 4px 20px rgba(37,99,235,.25);
+}
+.btn-primary:hover{background:var(--accent-bright);transform:translateY(-1px)}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-glass{
+  background:rgba(255,255,255,.06);color:var(--text);
+  border:1px solid var(--glass-border);
+}
+.btn-glass:hover{background:rgba(255,255,255,.1);border-color:var(--glass-border-hover)}
+
+/* ---------- Badge dot ---------- */
+.badge-dot{
+  display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--teal);
+  animation:pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot{
+  0%,100%{opacity:1}50%{opacity:.4}
+}
+
+/* ---------- Eyebrow ---------- */
+.tailor-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);
+  font-size:.75rem;font-weight:500;letter-spacing:.02em;
+  padding:8px 16px;border-radius:100px;
+  background:rgba(139,92,246,.08);
+  border:1px solid rgba(139,92,246,.2);
+  color:var(--violet);
+  margin-bottom:20px;
+}
+.tailor-title{
+  font-family:var(--font-heading);
+  font-size:clamp(2rem,5vw,3rem);font-weight:700;
+  letter-spacing:-.03em;margin-bottom:14px;
+}
+.tailor-lede{
+  color:var(--text-muted);font-size:1.02rem;line-height:1.7;
+  max-width:640px;margin-bottom:8px;
+}
+.tailor-note{
+  color:var(--text-dim);font-size:.825rem;
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:8px;
+}
+.tailor-note svg{flex-shrink:0;color:var(--accent)}
+.tailor-lede+.tailor-note{margin-top:8px}
+
+/* ---------- Grid ---------- */
+.tailor-grid{
+  display:grid;grid-template-columns:2.4fr 1fr;gap:20px;align-items:start;
+  margin-top:24px;
+}
+.tailor-panel{padding:24px;min-width:0}
+.tailor-panel-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:14px;gap:12px;flex-wrap:wrap;
+}
+.tailor-panel-title{
+  font-family:var(--font-heading);font-weight:600;font-size:1rem;
+}
+.tailor-textarea{
+  width:100%;min-height:260px;resize:vertical;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius-sm);
+  color:var(--text);
+  font-family:var(--font-body);font-size:.9rem;line-height:1.6;
+  padding:14px;
+  transition:border-color .2s;
+}
+.tailor-textarea:focus{
+  outline:none;
+  border-color:rgba(6,182,212,.4);
+}
+.tailor-actions{
+  display:flex;align-items:center;gap:14px;margin-top:16px;flex-wrap:wrap;
+}
+#tailor-status{
+  font-family:var(--font-mono);font-size:.8rem;color:var(--text-dim);
+  flex:1;min-width:180px;
+}
+.tailor-status-error{color:#f87171}
+
+.tailor-summary-block{margin-top:24px;margin-bottom:20px}
+.tailor-summary-label{
+  font-family:var(--font-mono);font-size:.7rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);
+  margin-bottom:10px;
+}
+#match-summary{display:flex;flex-wrap:wrap;gap:8px}
+.tailor-chip{
+  font-size:.75rem;font-weight:500;
+  padding:4px 12px;border-radius:100px;
+  background:rgba(6,182,212,.1);
+  border:1px solid rgba(6,182,212,.2);
+  color:var(--accent-bright);
+}
+.tailor-hint{font-size:.825rem;color:var(--text-dim);font-style:italic}
+#selected-projects-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+#selected-projects-list li{
+  font-size:.85rem;color:var(--text-muted);
+  padding:8px 12px;border-radius:var(--radius-sm);
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--glass-border);
+}
+
+.tailor-preview-wrap{
+  background:#fff;border-radius:var(--radius-sm);
+  overflow:auto;max-height:85vh;
+  padding:20px;
+}
+#pdf-preview{width:100%;isolation:isolate;contain:layout paint;min-width:0}
+#pdf-preview svg{
+  width:100%;max-width:800px;height:auto;
+  display:block;margin:0 auto;
+}
+
+.tailor-btn-disabled{
+  pointer-events:none;opacity:.4;
+}
+
+/* ---------- Footer ---------- */
+.footer{
+  text-align:center;padding:24px;
+  color:var(--text-dim);font-size:.8rem;
+}
+
+/* ---------- Responsive ---------- */
+@media(max-width:900px){
+  .tailor-grid{grid-template-columns:1fr}
+  .tailor-preview-wrap{max-height:70vh}
+}
+@media(max-width:640px){
+  .tailor-panel{padding:18px}
+  .tailor-preview-wrap{padding:12px;max-height:60vh}
+  .tailor-title{font-size:clamp(1.6rem,7vw,2.2rem)}
+}

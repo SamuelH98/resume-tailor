@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Tailor — Samuel Hale</title>
+  <meta name="description" content="Browser-based resume tailor that matches job descriptions against your skills and compiles a tailored PDF using Typst WASM, entirely client-side.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="tailor-eyebrow">
+          <span class="badge-dot"></span>
+          100% Client-Side
+        </span>
+        <h1 class="tailor-title">Resume Tailor</h1>
+        <p class="tailor-lede">
+          Paste a job description below. It's matched against a structured model of my real skills and
+          projects, then compiled into a tailored one-page resume — as an actual PDF — using the
+          <strong>Typst compiler running as WebAssembly, directly in your browser.</strong>
+        </p>
+        <p class="tailor-note">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          Nothing you paste here is sent anywhere — matching and PDF compilation both happen on-device.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="tailor-grid">
+        <!-- Input panel -->
+        <div class="tailor-panel glass-card">
+          <div class="tailor-panel-head">
+            <span class="tailor-panel-title">Job Description</span>
+          </div>
+          <textarea id="jd-input" class="tailor-textarea" placeholder="Paste a job description here, then click Generate. Leave it empty to see the default resume."></textarea>
+          <div class="tailor-actions">
+            <button id="generate-btn" class="btn btn-primary" type="button">
+              <span>Generate Tailored Resume</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+            </button>
+            <a id="download-btn" class="btn btn-glass tailor-btn-disabled" aria-disabled="true" href="#" download>Download PDF</a>
+            <span id="tailor-status">Loading Typst WASM compiler…</span>
+          </div>
+
+          <div class="tailor-summary-block">
+            <div class="tailor-summary-label">Matched Skills</div>
+            <div id="match-summary"></div>
+          </div>
+          <div class="tailor-summary-block">
+            <div class="tailor-summary-label">Selected Projects</div>
+            <ul id="selected-projects-list"></ul>
+          </div>
+        </div>
+
+        <!-- Preview panel -->
+        <div class="tailor-panel glass-card">
+          <div class="tailor-panel-head">
+            <span class="tailor-panel-title">Live Preview</span>
+          </div>
+          <div class="tailor-preview-wrap">
+            <div id="pdf-preview"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-text">&copy; 2026 Samuel Hale.</p>
+  </footer>
+
+  <script type="module" src="vendor/typst/all-in-one-lite.bundle.js" id="typst"></script>
+  <script src="resume-data.js"></script>
+  <script src="resume-tailor.js"></script>
+</body>
+</html>
